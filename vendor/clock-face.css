@@ -33,15 +33,11 @@
 .clock-face-minute {
 	margin: -40% -3px 0;
 	padding: 40% 3px 0;
-	-ms-transform-origin: 50% 100%;
-	-webkit-transform-origin: 50% 100%;
 	transform-origin: 50% 100%;
 	border-radius: 3px 3px 0 0;
 }
 .clock-face-second {
 	margin: -40% -1px 0 0;
 	padding: 40% 1px 0;
-	-ms-transform-origin: 50% 100%;
-	-webkit-transform-origin: 50% 100%;
 	transform-origin: 50% 100%;
 }
