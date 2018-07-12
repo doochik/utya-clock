@@ -103,7 +103,11 @@
             const top = 40 * Math.sin(rad30j + rad270) + 15;
             const left = 40 * Math.cos(rad30j + rad270) + 15;
 
-			return `<img class="clock-face-image${ add === num ? ' clock-face-image-current' : '' }" src="kotya/${ num }.${ images[num] }" style="top: ${ top }${ dimension }; left: ${ left }${ dimension }"/>`;
+			return `<img
+						class="clock-face-image${ add === num ? ' clock-face-image-current' : '' }"
+						src="kotya/${ num }.${ images[num] }"
+						style="top: ${ top }${ dimension };left: ${ left }${ dimension };opacity:${ 1.1 - (index/12) }"
+					/>`;
 		}).join('');
 	};
 
