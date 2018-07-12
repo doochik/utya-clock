@@ -2,24 +2,29 @@
 	"use strict";
 
 	const images = new Array(24).fill('jpg');
-	images[0] = 'webp';
-	images[1] = 'webp';
-	images[2] = 'webp';
-	images[7] = 'webp';
-	images[8] = 'webp';
-	images[9] = 'webp';
-	images[12] = 'webp';
-	images[15] = 'webp';
-	images[16] = 'webp';
-	images[20] = 'webp';
-	images[23] = 'webp';
+	// images[0] = 'webp';
+	// images[1] = 'webp';
+	// images[2] = 'webp';
+	// images[7] = 'webp';
+	// images[8] = 'webp';
+	// images[9] = 'webp';
+	// images[12] = 'webp';
+	// images[15] = 'webp';
+	// images[16] = 'webp';
+	// images[20] = 'webp';
+	// images[23] = 'webp';
 
-	var proto = Object.create( HTMLElement.prototype );
+	function ClockFace(elem) {
+		this.elem = elem;
+	}
+
+    ClockFace.prototype =  {};
+	const proto = ClockFace.prototype;
 	proto.createdCallback = function() {
-		var that = this;
+		console.log('1', this);
 		this.readAttributes();
 
-		this.innerHTML =
+		this.elem.innerHTML =
 			"<div class='clock-face-container'>" +
 				"<div class='clock-face-hour'></div>" +
 				"<div class='clock-face-minute'></div>" +
@@ -28,21 +33,21 @@
 				this.createImages() +
 			"</div>";
 
-		this.hourElement = this.querySelector( ".clock-face-hour" );
-		this.minuteElement = this.querySelector( ".clock-face-minute" );
-		this.secondElement = this.querySelector( ".clock-face-second" );
+		this.hourElement = this.elem.querySelector( ".clock-face-hour" );
+		this.minuteElement = this.elem.querySelector( ".clock-face-minute" );
+		this.secondElement = this.elem.querySelector( ".clock-face-second" );
 
 		this.updateClock();
 		if ( !this.hour && !this.minute && !this.second  ) {
-			setInterval(function() {
-				that.updateClock();
+			setInterval(() => {
+				this.updateClock();
 			}, 1000 );
 		}
 	};
 	proto.readAttributes = function() {
-		this.hour = this.getAttribute( "hour" );
-		this.minute = this.getAttribute( "minute" );
-		this.second = this.getAttribute( "second" );
+		this.hour = this.elem.getAttribute( "hour" );
+		this.minute = this.elem.getAttribute( "minute" );
+		this.second = this.elem.getAttribute( "second" );
 	};
 	proto.updateClock = function() {
 		var now = new Date(),
@@ -98,7 +103,6 @@
 		}).join('');
 	};
 
-	document.registerElement( "clock-face", {
-		prototype: proto
-	});
+    const elem = document.querySelector('.clock-face');
+	new ClockFace(elem).createdCallback();
 }());
