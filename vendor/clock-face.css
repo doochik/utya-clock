@@ -6,6 +6,28 @@
 	border: 6px solid black;
 	border-radius: 50%;
 }
+
+@media all and (orientation:landscape)
+{
+	.clock-face {
+		width: 50vh;
+		height: 50vh;
+	}
+}
+
+@media all and (orientation:portrait)
+{
+	.clock-face {
+		width: 50vw;
+		height: 50vw;
+	}
+}
+
+.big {
+	height: 50vh;
+	width: 50vh;
+}
+
 .clock-face-container::after {
 	position: absolute;
 	top: 50%;
@@ -47,10 +69,20 @@
 	position: absolute;
 }
 
-.clock-face-image {
-	position: absolute;
-	width: 20vh;
-	/*height: 20vh;*/
+@media all and (orientation:landscape)
+{
+	.clock-face-image {
+		position: absolute;
+		width: 20vh;
+	}
+}
+
+@media all and (orientation:portrait)
+{
+	.clock-face-image {
+		position: absolute;
+		width: 20vw;
+	}
 }
 
 .clock-face-image-current {

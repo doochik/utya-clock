@@ -16,12 +16,13 @@
 
 	function ClockFace(elem) {
 		this.elem = elem;
+
+		window.addEventListener('resize', () => this.createdCallback(), false);
 	}
 
     ClockFace.prototype =  {};
 	const proto = ClockFace.prototype;
 	proto.createdCallback = function() {
-		console.log('1', this);
 		this.readAttributes();
 
 		this.elem.innerHTML =
@@ -39,7 +40,8 @@
 
 		this.updateClock();
 		if ( !this.hour && !this.minute && !this.second  ) {
-			setInterval(() => {
+			clearInterval(this.timer);
+			this.timer = setInterval(() => {
 				this.updateClock();
 			}, 1000 );
 		}
@@ -72,6 +74,7 @@
 		}
 	};
 	proto.createNumbers = () => {
+        const dimension = window.innerHeight > window.innerWidth ? 'vw' : 'vh';
 		return new Array(12).fill(null).map((value, index) => {
 			const num = index + 1;
             const rad1 = 0.0174532925;
@@ -81,7 +84,7 @@
             const top = 22 * Math.sin(rad30j + rad270) + 23.5;
             const left = 22 * Math.cos(rad30j + rad270) + 24;
 
-			return `<span class="clock-face-numeral" style="top: ${ top }vh; left: ${ left }vh">${ index + 1 }</span>`;
+			return `<span class="clock-face-numeral" style="top: ${ top }${ dimension }; left: ${ left }${ dimension }">${ index + 1 }</span>`;
 		}).join('');
 	};
 
@@ -90,7 +93,8 @@
 		// const add = new Date().getHours() - 6;
 		// const add = 20 - 1;
         const add = new Date().getHours();
-		return new Array(12).fill(null).map((value, index) => {
+        const dimension = window.innerHeight > window.innerWidth ? 'vw' : 'vh';
+        return new Array(12).fill(null).map((value, index) => {
 			const num = (index + add) % 24;
             const rad1 = 0.0174532925;
             const rad30j = 30 * rad1 * num;
@@ -99,7 +103,7 @@
             const top = 40 * Math.sin(rad30j + rad270) + 15;
             const left = 40 * Math.cos(rad30j + rad270) + 15;
 
-			return `<img class="clock-face-image${ add === num ? ' clock-face-image-current' : '' }" src="kotya/${ num }.${ images[num] }" style="top: ${ top }vh; left: ${ left }vh"/>`;
+			return `<img class="clock-face-image${ add === num ? ' clock-face-image-current' : '' }" src="kotya/${ num }.${ images[num] }" style="top: ${ top }${ dimension }; left: ${ left }${ dimension }"/>`;
 		}).join('');
 	};
 

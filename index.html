@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Utya clock</title>
+    <meta name="viewport" content="width=device-width,maximum-scale=1,initial-scale=1,user-scalable=no,viewport-fit=cover">
     <link rel="stylesheet" href="vendor/clock-face.css">
     <style>
         html, body {
             height: 100%;
             width: 100%;
             font-family: -apple-system, Roboto, Arial, 'Helvetica Neue', Helvetica, sans-serif;
+        }
+
+        body {
+            overflow: hidden;
         }
 
         .app {
@@ -19,16 +24,11 @@
             height: 100%;
             width: 100%;
         }
-
-        .big {
-            height: 50vh;
-            width: 50vh;
-        }
     </style>
 </head>
 <body>
 <div class="app">
-    <div class="clock-face big"></div>
+    <div class="clock-face"></div>
 </div>
 <script src="vendor/clock-face.js"></script>
 </body>
